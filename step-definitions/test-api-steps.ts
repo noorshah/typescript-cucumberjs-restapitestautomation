@@ -1,4 +1,4 @@
-import {Given,When,Then} from 'cucumber'
+import{Given,Then} from 'cucumber'
 import {expect} from 'chai'
 import{apiHelper} from '../support/api-helper'
 
@@ -15,4 +15,3 @@ import{apiHelper} from '../support/api-helper'
       expect(this.putResponseStatusCode).to.equal(StatusCode)
       expect(this.deleteResponseStatusCode).to.equal(StatusCode) 
     })
-
