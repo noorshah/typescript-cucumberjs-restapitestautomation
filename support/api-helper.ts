@@ -1,5 +1,6 @@
 import {World, setWorldConstructor,setDefaultTimeout}from 'cucumber'
 import got  from'got'
+import jsonpath from 'jsonpath'
 
 interface Response { statusCode: number, body?: any }
 
@@ -8,14 +9,16 @@ class ApiHelper implements World{
     getResponseStatusCode: any
     putResponseStatusCode: any
     deleteResponseStatusCode: any
+    countriesResponse: any
+    italyInformation: any
 
     constructor(){
        
     }
 
-    async get(): Promise<number>{
-      const response= await got.get('https://jsonplaceholder.typicode.com/posts/1')
-      return response.statusCode
+    async get(url: string): Promise<Response>{
+      const response= await got.get(url)
+      return response
     }
 
     async post(): Promise<number>{
@@ -47,6 +50,11 @@ class ApiHelper implements World{
     async delete(): Promise<number>{
         const response= await got.delete('https://jsonplaceholder.typicode.com/posts/1')
         return response.statusCode
+    }
+
+    async get_countries(){
+        const response= this.get('https://restcountries.eu/rest/v2/all')
+        return response
     }
 
 }

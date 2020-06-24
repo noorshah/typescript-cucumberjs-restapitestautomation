@@ -1,12 +1,11 @@
 import{Given,Then} from 'cucumber'
 import {expect} from 'chai'
-import{apiHelper} from '../support/api-helper'
 
     Given('I am calling a test api', async function () {
-        this.getResponseStatusCode = await apiHelper.get()
+        this.getResponseStatusCode = (await this.get('https://jsonplaceholder.typicode.com/posts/1')).statusCode
         // const postResponse =await this.post()
-        this.putResponseStatusCode = await apiHelper.put()
-        this.deleteResponseStatusCode = await apiHelper.delete()
+        this.putResponseStatusCode = await this.put()
+        this.deleteResponseStatusCode = await this.delete()
         
     })
 
